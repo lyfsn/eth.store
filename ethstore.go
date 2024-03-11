@@ -642,13 +642,17 @@ func batchRequestReceipts(ctx context.Context, elClient *gethRPC.Client, txHashe
 }
 
 func requestReceipts(ctx context.Context, elClient *gethRPC.Client, blockNumber uint64) ([]*TxReceipt, error) {
-	txReceipts := make([]*TxReceipt, 0)
+	txReceipts := make([]*TxReceiptDebug, 0)
 
 	ioErr := elClient.CallContext(ctx, &txReceipts, "eth_getBlockReceipts", blockNumber)
 	if ioErr != nil {
 		return nil, fmt.Errorf("io-error when fetching tx-receipts: %w", ioErr)
 	}
-	return txReceipts, nil
+	for _, receipt := range txReceipts {
+		fmt.Printf("Receipt: %+v\n", receipt)
+	}
+	return nil, nil
+	//return txReceipts, nil
 }
 
 type TxReceipt struct {
@@ -665,4 +669,20 @@ type TxReceipt struct {
 	TransactionHash   *common.Hash    `json:"transactionHash"`
 	TransactionIndex  hexutil.Uint64  `json:"transactionIndex"`
 	Type              hexutil.Uint64  `json:"type"`
+}
+
+type TxReceiptDebug struct {
+	BlockHash         interface{} `json:"blockHash"`
+	BlockNumber       interface{} `json:"blockNumber"`
+	ContractAddress   interface{} `json:"contractAddress,omitempty"`
+	CumulativeGasUsed interface{} `json:"cumulativeGasUsed"`
+	EffectiveGasPrice interface{} `json:"effectiveGasPrice"`
+	From              interface{} `json:"from,omitempty"`
+	GasUsed           interface{} `json:"gasUsed"`
+	LogsBloom         interface{} `json:"logsBloom"`
+	Status            interface{} `json:"status"`
+	To                interface{} `json:"to,omitempty"`
+	TransactionHash   interface{} `json:"transactionHash"`
+	TransactionIndex  interface{} `json:"transactionIndex"`
+	Type              interface{} `json:"type"`
 }
