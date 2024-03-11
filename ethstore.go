@@ -495,7 +495,7 @@ func Calculate(ctx context.Context, bnAddress, elAddress, dayStr string, concurr
 					baseFeePerGasBEBytes[i] = blockData.BaseFeePerGas[32-1-i]
 				}
 				baseFeePerGas := new(big.Int).SetBytes(baseFeePerGasBEBytes[:])
-				fmt.Println("--debug--4", baseFeePerGas)
+				fmt.Println("--debug-5", blockData.BaseFeePerGas)
 
 				burntFee := new(big.Int).Mul(baseFeePerGas, new(big.Int).SetUint64(blockData.GasUsed))
 
