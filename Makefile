@@ -1,4 +1,4 @@
-GITURL="github.com/gobitfly/eth.store"
+GITURL="github.com/lyfsn/eth.store"
 GITCOMMIT=`git describe --always`
 GITDATE=$$(TZ=UTC git show -s --date=iso-strict-local --format=%cd HEAD | sed 's/[-T:]//g' | sed 's/\(+.*\)$$//g')
 BUILDDATE=`date -u +"%Y%m%d%H%M%S"`

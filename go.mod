@@ -1,4 +1,4 @@
-module github.com/gobitfly/eth.store
+module github.com/lyfsn/eth.store
 
 go 1.21
 
