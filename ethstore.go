@@ -646,7 +646,9 @@ func requestReceipts(ctx context.Context, elClient *gethRPC.Client, blockNumber 
 	txReceipts := make([]*TxReceiptDebug, 0)
 
 	fmt.Println("--debug--2")
-	ioErr := elClient.CallContext(ctx, &txReceipts, "eth_getBlockReceipts", blockNumber)
+	fmt.Println("--debug--3", blockNumber)
+	blockNumberHex := fmt.Sprintf("0x%x", blockNumber)
+	ioErr := elClient.CallContext(ctx, &txReceipts, "eth_getBlockReceipts", blockNumberHex)
 	if ioErr != nil {
 		return nil, fmt.Errorf("io-error when fetching tx-receipts: %w", ioErr)
 	}
