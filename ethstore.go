@@ -654,7 +654,7 @@ func requestReceipts(ctx context.Context, elClient *gethRPC.Client, blockNumber 
 		fmt.Printf("Receipt: %+v\n", receipt)
 	}
 	return nil, nil
-	return txReceipts, nil
+	//return txReceipts, nil
 }
 
 type TxReceipt struct {
