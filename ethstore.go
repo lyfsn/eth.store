@@ -567,6 +567,8 @@ func Calculate(ctx context.Context, bnAddress, elAddress, dayStr string, concurr
 		totalWithdrawalsSumGwei += v.WithdrawalsSumGwei
 		totalTxFeesSumWei.Add(totalTxFeesSumWei, v.TxFeesSumWei)
 
+		fmt.Println("--debug--3", totalTxFeesSumWei, v.TxFeesSumWei)
+
 		validatorConsensusRewardsGwei := decimal.NewFromInt(int64(v.EndBalanceGwei) - int64(v.StartBalanceGwei) - int64(v.DepositsSumGwei) + int64(v.WithdrawalsSumGwei))
 		validatorRewardsWei := decimal.NewFromBigInt(v.TxFeesSumWei, 0).Add(validatorConsensusRewardsGwei.Mul(decimal.NewFromInt(1e9)))
 
