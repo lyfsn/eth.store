@@ -244,6 +244,7 @@ func Calculate(ctx context.Context, bnAddress, elAddress, dayStr string, concurr
 		return nil, nil, err
 	}
 
+	fmt.Println("---debug---")
 	service, err := http.New(ctx, http.WithAddress(bnAddress), http.WithTimeout(GetConsTimeout()), http.WithLogLevel(zerolog.WarnLevel))
 	if err != nil {
 		return nil, nil, err
