@@ -639,7 +639,7 @@ func batchRequestReceipts(ctx context.Context, elClient *gethRPC.Client, txHashe
 	}
 	for _, e := range errors {
 		if e != nil {
-			return nil, fmt.Errorf("error when fetching tx-receipts: %w", e)
+			return nil, fmt.Errorf("error when fetching tx-receipts[2]: %w", e)
 		}
 	}
 	return txReceipts, nil
@@ -647,10 +647,9 @@ func batchRequestReceipts(ctx context.Context, elClient *gethRPC.Client, txHashe
 
 func requestReceipts(ctx context.Context, elClient *gethRPC.Client, blockNumber uint64) ([]*TxReceipt, error) {
 	txReceipts := make([]*TxReceipt, 0)
-	blockNumberHex := fmt.Sprintf("0x%x", blockNumber)
-	ioErr := elClient.CallContext(ctx, &txReceipts, "eth_getBlockReceipts", blockNumberHex)
+	ioErr := elClient.CallContext(ctx, &txReceipts, "eth_getBlockReceipts", blockNumber)
 	if ioErr != nil {
-		return nil, fmt.Errorf("io-error when fetching tx-receipts: %w", ioErr)
+		return nil, fmt.Errorf("io-error when fetching tx-receipts[1]: %w", ioErr)
 	}
 	return txReceipts, nil
 }
